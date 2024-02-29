@@ -5,7 +5,7 @@ namespace Citilink\ExpertSenderApi\Event;
 
 use Citilink\ExpertSenderApi\RequestInterface;
 use GuzzleHttp\Exception\RequestException;
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * Event on exception thrown while making request
