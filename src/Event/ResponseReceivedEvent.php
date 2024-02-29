@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Citilink\ExpertSenderApi\Event;
 
 use Citilink\ExpertSenderApi\ResponseInterface;
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * Event after response received
