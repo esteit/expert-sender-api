@@ -73,9 +73,9 @@ class RequestSender implements RequestSenderInterface
         try {
             $httpResponse = $this->httpClient->request($request->getMethod()->getValue(), $request->getUri(), $options);
         } catch (RequestException $e) {
-            $this->eventDispatcher->dispatch(
-                'expert_sender_api.request.exception_thrown',
-                new RequestExceptionThrown($request, $e)
+            $this->eventDispatcher->dispatch(                
+                new RequestExceptionThrown($request, $e),
+                'expert_sender_api.request.exception_thrown'
             );
 
             if ($e->getResponse() !== null) {
@@ -107,8 +107,8 @@ class RequestSender implements RequestSenderInterface
 
         $apiResponse = new Response($httpResponse);
         $this->eventDispatcher->dispatch(
-            'expert_sender_api.response.received',
-            new ResponseReceivedEvent($apiResponse)
+            new ResponseReceivedEvent($apiResponse),
+            'expert_sender_api.response.received'            
         );
 
         return $apiResponse;
