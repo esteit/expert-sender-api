@@ -93,11 +93,18 @@ class SpecificCsvMethodResponse implements ResponseInterface
         }
 
         $newStream = new Stream(fopen('php://temp', 'r+'));
-        copy_to_stream($this->getStream(), $newStream);
+        $this->copyToStream($this->getStream(), $newStream);
         $newStream->rewind();
         $phpStream = $newStream->detach();
 
         return new CsvReader($phpStream);
+    }
+
+    public function copyToStream(StreamInterface $source, StreamInterface $destination)
+    {
+        while (!$source->eof()) {
+            $destination->write($source->read(8192));
+        }
     }
 
     /**
